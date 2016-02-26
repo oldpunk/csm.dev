@@ -1,0 +1,45 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        admin_provider:
+            entity:
+                class: AdminCommonBundle:Users
+                property: login
+
+    encoders:
+        Admin\CommonBundle\Entity\Users:
+            algorithm: bcrypt
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin_area:
+            pattern: /admin/.*
+            anonymous: ~
+            provider: admin_provider
+            form_login:
+                login_path: admin_login
+                check_path: admin_login
+                default_target_path: admin_index
+
+            logout:
+                path:   admin_logout
+                target: admin_login
+
+            remember_me:
+                name: 'admlgn'
+                secret:   '%secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+
+
+
+    access_control:
+            - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/admin, roles: ROLE_ADMIN }

@@ -1,0 +1,86 @@
+{% extends 'AdminCommonBundle::content.html.twig' %}
+
+{% block title %}Пользователи{% endblock %}
+
+{% block breadcrumbs %}
+{{ include('AdminCommonBundle::breadcrumbs.html.twig', {
+    'items' : {'Пользователи': null}
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="portlet light">
+    <div class="portlet-title">
+
+        <div class="actions btn-set">
+            <a href="{{ path('admin_users_add') }}" class="btn btn-default"> Добавить </a>
+        </div>
+
+        <div class="table-group-actions">
+            <select class="bs-select form-control input-medium ">
+                <option value="">С отмеченными...</option>
+                <option value="delete">Удалить</option>
+            </select>
+            <button class="btn yellow table-group-action-submit" id="deleteListItems" data-mod="Useful">
+                <i class="fa fa-check"></i> Выполнить
+            </button>
+        </div>
+
+    </div>
+
+    <div class="portlet-body">
+        <div class="table-container">
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr role="row" class="heading">
+                        <th width="1%">
+                            <div class="checker"><span><input class="group-checkable" type="checkbox"></span></div>
+                        </th>
+                        <th width="1%">ID</th>
+                        <th width="155">Фото</th>
+                        <th>Логин</th>
+                        <th>E-mail</th>
+                        <th width="1%">Управление</th>
+                    </tr>
+                    </thead>
+                    <tbody class="ui-sortable">
+                    {% for user in users %}
+                        <tr class="ui-sortable-handle" align="center">
+                            <td>
+                                <div class="checker">
+                                    <span><input value="{{ user.id }}" name="id[]" type="checkbox"></span>
+                                </div>
+                            </td>
+                            <td>{{ user.id }}</td>
+                            <td>
+                                {% if user.avatar is not null %}
+                                    <img src="{{ asset(user.webPath(user.avatar)) }}" alt="1" width="150">
+                                {% endif %}
+                            </td>
+                            <td align="left">{{ user.login }}</td>
+                            <td align="left">{{ user.email }}</td>
+                            <td nowrap="nowrap">
+                                <a class="btn btn-icon-only blue" href="{{ path('admin_users_edit', {id:user.id}) }}" title="Редактировать)">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                {% if user.id > 1 %}
+                                    <a href="{{ path('admin_users_del', {id:user.id}) }}" title="Удалить" class="btn btn-icon-only red">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

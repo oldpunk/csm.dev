@@ -1,0 +1,23 @@
+<ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    <li class="start {{ path == 'admin_index' ? 'active' }} ">
+        <a href="{{ path('admin_index') }}">
+            <i class="icon-home"></i>
+            <span class="title">Главная</span>
+        </a>
+    </li>
+
+    <li {% if path starts with 'admin_users' %} class="active" {% endif %}>
+        <a href="{{ path('admin_users') }}">
+            <i class="icon-home"></i>
+            <span class="title">Пользователи</span>
+        </a>
+    </li>
+
+    <li {% if path starts with 'admin_groups' %} class="active" {% endif %}>
+        <a href="{{ path('admin_groups') }}">
+            <i class="icon-home"></i>
+            <span class="title">Группы</span>
+        </a>
+    </li>
+
+</ul>

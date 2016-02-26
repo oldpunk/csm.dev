@@ -1,0 +1,43 @@
+admin_index:
+  path: /
+  defaults: { _controller: AdminCommonBundle:Default:index }
+
+admin_login:
+  path: /login
+  defaults: { _controller: AdminCommonBundle:Default:login }
+
+admin_logout:
+  path: /logout
+
+admin_users:
+    path: /users
+    defaults: { _controller: AdminCommonBundle:Users:index}
+
+admin_users_add:
+    path: /users/add
+    defaults: { _controller: AdminCommonBundle:Users:add}
+
+admin_users_edit:
+    path: /users/edit/{id}
+    defaults: { _controller: AdminCommonBundle:Users:edit}
+
+admin_users_del:
+    path: /users/del/{id}
+    defaults: { _controller: AdminCommonBundle:Users:del}
+
+
+admin_groups:
+    path: /groups
+    defaults: { _controller: AdminCommonBundle:Groups:index}
+
+admin_groups_add:
+    path: /groups/add
+    defaults: { _controller: AdminCommonBundle:Groups:add}
+
+admin_groups_edit:
+    path: /groups/edit/{id}
+    defaults: { _controller: AdminCommonBundle:Groups:edit}
+
+admin_groups_del:
+    path: /groups/del/{id}
+    defaults: { _controller: AdminCommonBundle:Groups:del}

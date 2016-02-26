@@ -1,0 +1,17 @@
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="{{ path('admin_index') }}">Главная</a>
+    </li>
+
+    {% for title, path in items %}
+    <li>
+        {% if path is not null %}
+            <i class="fa fa-circle"></i>
+            <a href="{{ path }}">{{ title }}</a>
+        {% else %}
+            <i class="fa fa-circle"></i>{{ title }}
+        {% endif %}
+    </li>
+    {% endfor %}
+
+</ul>

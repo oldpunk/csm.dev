@@ -1,0 +1,19 @@
+services:
+
+#Servises
+    admin_common.uploader:
+        class: Admin\CommonBundle\Services\Uploader
+        arguments: ['@service_container', '%kernel.root_dir%']
+
+#Lisseners
+    entity.file.listener:
+            class: Admin\CommonBundle\EventListener\FileDeleteListener
+            arguments: ['@admin_common.uploader']
+            tags:
+                - { name: doctrine.event_listener, event: postRemove }
+
+#Types
+    admin.form.type.image:
+            class: Admin\CommonBundle\Form\Type\ImageType
+            tags:
+                - { name: form.type, alias: image }

@@ -1,0 +1,43 @@
+{% extends 'AdminCommonBundle::content.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ include('AdminCommonBundle::breadcrumbs.html.twig', {
+        'items' : itemsArray
+    }) }}
+{% endblock %}
+
+{% block content %}
+    <div class="portlet light bordered form-fit">
+        <div class="portlet-title">
+            <div class="caption font-red-intense">
+                <i class="icon-pin font-red-intense"></i>
+                <span class="caption-subject bold uppercase">{{ title }}</span>
+            </div>
+
+            <div class="actions btn-set">
+                <a href="{{ path( backPath ) }}" class="btn btn-default"> К списку</a>
+            </div>
+        </div>
+
+        <div class="portlet-body form">
+            <form method="post" enctype="multipart/form-data" class="form-horizontal form-bordered form-label-stripped">
+                <div class="form-body">
+                    {{ form_widget(form)}}
+                </div>
+
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn purple"><i class="fa fa-check"></i> Сохранить</button>
+                            <button type="button" class="btn default" onclick="document.location = '{{ path( backPath ) }}'">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

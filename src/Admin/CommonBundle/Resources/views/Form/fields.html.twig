@@ -1,0 +1,67 @@
+{% block image_widget %}
+    {% spaceless %}
+        <div class="file_widget">
+            {% set img = attribute(form.parent.vars.data, form.vars.name) %}
+            {% set path = form.parent.vars.data.webPath(img) %}
+            {% if img is not empty %}
+                <img src="{{ asset(path) }}" width="150" alt="">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="{{ form.vars.name }}_del"/>
+                        Удалить файл
+                    </label>
+                </div>
+            {% endif %}
+
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="input-group input-large">
+                    <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                        <i class="fa fa-file fileinput-exists"></i>&nbsp; <span class="fileinput-filename"></span>
+                    </div>
+                    <span class="input-group-addon btn default btn-file">
+                        <span class="fileinput-new">Выберите файл  </span>
+                        <span class="fileinput-exists">Поменять </span>
+                        <input type="file" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} />
+                    </span>
+                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput">
+                        Удалить </a>
+                </div>
+            </div>
+
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block file_widget %}
+    {% spaceless %}
+        <div class="file_widget">
+            {% set img = attribute(form.parent.vars.data, form.vars.name) %}
+            {% set path = form.parent.vars.data.webPath(img) %}
+            {% if img is not empty %}
+                <a href="{{ asset(path) }}" target="_blank">Скачать файл</a>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="{{ form.vars.name }}_del"/>
+                        Удалить файл
+                    </label>
+                </div>
+            {% endif %}
+
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="input-group input-large">
+                    <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                        <i class="fa fa-file fileinput-exists"></i>&nbsp; <span class="fileinput-filename"></span>
+                    </div>
+                    <span class="input-group-addon btn default btn-file">
+                        <span class="fileinput-new">Выберите файл  </span>
+                        <span class="fileinput-exists">Поменять </span>
+                        <input type="file" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} />
+                    </span>
+                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput">
+                        Удалить </a>
+                </div>
+            </div>
+
+        </div>
+    {% endspaceless %}
+{% endblock %}
